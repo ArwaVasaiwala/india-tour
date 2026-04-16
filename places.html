@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Places - IndiaTour</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body { background:#f4f6f9; }
+
+.card {
+  border-radius:15px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card img {
+  height:200px;
+  object-fit:cover;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold">IndiaTour</a>
+  </div>
+</nav>
+
+<section class="py-5 text-center">
+  <h2 class="fw-bold">Explore Places</h2>
+</section>
+
+<div class="container pb-5">
+  <div class="row g-4" id="placesContainer"></div>
+</div>
+
+<script>
+const places = [
+  {id:"taj", name:"Taj Mahal", img:"images/taj.jjpg.jpeg", rating:4.9, category:"Agra"},
+  {id:"manali", name:"Manali", img:"images/manali.jpg.jpeg", rating:4.7, category:"Himachal"},
+  {id:"shimla", name:"Shimla", img:"images/shimla.jpg.jpeg", rating:4.6, category:"Himachal"},
+  {id:"ooty", name:"Ooty", img:"images/ooty.jpg.jpeg", rating:4.6, category:"Tamil Nadu"},
+  {id:"kedarnath", name:"Kedarnath", img:"images/kedarnath.jpg.jpeg", rating:4.8, category:"Uttarakhand"},
+  {id:"varanasi", name:"Varanasi", img:"images/varanasi.jpeg", rating:4.8, category:"UP"},
+  {id:"udaipur", name:"Udaipur", img:"images/udaipur.jpeg", rating:4.9, category:"Rajasthan"},
+  {id:"andaman", name:"Andaman", img:"images/andaman.jpeg", rating:4.9, category:"Islands"},
+  {id:"rishikesh", name:"Rishikesh", img:"images/rishikesh.jpeg", rating:4.7, category:"Uttarakhand"},
+  {id:"ladakh", name:"Leh Ladakh", img:"images/ladakh.jpeg", rating:4.9, category:"Ladakh"},
+  {id:"mysore", name:"Mysore", img:"images/mysore.jpeg", rating:4.6, category:"Karnataka"},
+  {id:"darjeeling", name:"Darjeeling", img:"images/darjeeling.jpeg", rating:4.7, category:"WB"},
+  {id:"amritsar", name:"Amritsar", img:"images/amritsar.jpeg", rating:4.8, category:"Punjab"},
+  {id:"hampi", name:"Hampi", img:"images/hampi.jpeg", rating:4.7, category:"Karnataka"},
+  {id:"goa", name:"Goa", img:"images/goa copy.jpg", rating:4.8, category:"Goa"},
+  {id:"jaipur", name:"Jaipur", img:"images/jaipur.jpg", rating:4.7, category:"Rajasthan"}
+];
+
+const container = document.getElementById("placesContainer");
+
+places.forEach(p => {
+container.innerHTML += `
+<div class="col-md-4">
+  <div class="card shadow-sm h-100">
+
+    <img src="${p.img}" class="card-img-top">
+
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <h5>${p.name}</h5>
+        <span class="badge bg-warning text-dark">⭐ ${p.rating}</span>
+      </div>
+
+      <p class="text-muted small">${p.category}</p>
+
+      <a href="place-details.html?place=${p.id}" class="btn btn-dark btn-sm">
+        Explore
+      </a>
+    </div>
+
+  </div>
+</div>
+`;
+});
+</script>
+
+</body>
+</html>

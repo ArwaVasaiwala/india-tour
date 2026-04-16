@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Details</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body { background:#f4f6f9; }
+
+.card {
+  border-radius:15px;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a href="places.html" class="navbar-brand">⬅ IndiaTour</a>
+  </div>
+</nav>
+
+<div class="container py-5" id="details"></div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get("place");
+
+const places = {
+taj:{name:"Taj Mahal",img:"images/taj.jjpg.jpeg",loc:"Agra, UP",desc:"Symbol of love.",reach:"Agra Airport",best:"Oct–Mar",things:"Photography",stay:"₹1000–₹8000"},
+manali:{name:"Manali",img:"images/manali.jpg.jpeg",loc:"Himachal",desc:"Snow mountains.",reach:"Bhuntar",best:"Oct–Feb",things:"Skiing",stay:"₹1500–₹8000"},
+shimla:{name:"Shimla",img:"images/shimla.jpg.jpeg",loc:"Himachal",desc:"Hill station.",reach:"Kalka",best:"Mar–Jun",things:"Mall Road",stay:"₹2000–₹9000"},
+ooty:{name:"Ooty",img:"images/ooty.jpg.jpeg",loc:"Tamil Nadu",desc:"Tea gardens.",reach:"Coimbatore",best:"Apr–Jun",things:"Boating",stay:"₹1500–₹7000"},
+kedarnath:{name:"Kedarnath",img:"images/kedarnath.jpg.jpeg",loc:"Uttarakhand",desc:"Holy temple.",reach:"Trek",best:"May–Jun",things:"Darshan",stay:"Basic"},
+varanasi:{name:"Varanasi",img:"images/varanasi.jpeg",loc:"UP",desc:"Spiritual city.",reach:"Airport",best:"Oct–Mar",things:"Ganga Aarti",stay:"₹1000–₹6000"},
+udaipur:{name:"Udaipur",img:"images/udaipur.jpeg",loc:"Rajasthan",desc:"City of lakes.",reach:"Airport",best:"Sep–Mar",things:"Boating",stay:"₹2000–₹10000"},
+andaman:{name:"Andaman",img:"images/andaman.jpeg",loc:"Islands",desc:"Beaches.",reach:"Port Blair",best:"Nov–Apr",things:"Scuba",stay:"₹3000–₹12000"},
+rishikesh:{name:"Rishikesh", img:"images/rishikesh.jpeg",loc:"Uttarakhand",desc:"Yoga capital.",reach:"Haridwar",best:"Sep–Apr",things:"Rafting",stay:"₹1000–₹5000"},
+ladakh:{name:"Leh Ladakh", img:"images/ladakh.jpeg",loc:"Ladakh",desc:"Cold desert.",reach:"Leh",best:"May–Sep",things:"Bike trips",stay:"₹2000–₹8000"},
+mysore:{name:"Mysore",img:"images/mysore.jpeg",loc:"Karnataka",desc:"Palace city.",reach:"Train",best:"Oct–Mar",things:"Palace",stay:"₹1500–₹6000"},
+darjeeling:{name:"Darjeeling", img:"images/darjeeling.jpeg",loc:"WB",desc:"Tea gardens.",reach:"Bagdogra",best:"Mar–May",things:"Toy train",stay:"₹2000–₹7000"},
+amritsar:{name:"Amritsar",img:"images/amritsar.jpeg",loc:"Punjab",desc:"Golden Temple.",reach:"Airport",best:"Oct–Mar",things:"Temple",stay:"₹1500–₹7000"},
+hampi:{name:"Hampi",img:"images/hampi.jpeg",loc:"Karnataka",desc:"Ruins.",reach:"Hospet",best:"Oct–Feb",things:"Explore",stay:"₹1000–₹5000"},
+goa:{name:"Goa",img:"images/goa copy.jpg",loc:"Goa",desc:"Beaches.",reach:"Airport",best:"Nov–Feb",things:"Parties",stay:"₹2000–₹10000"},
+jaipur:{name:"Jaipur",img:"images/jaipur.jpg",loc:"Rajasthan",desc:"Pink city.",reach:"Airport",best:"Oct–Mar",things:"Forts",stay:"₹2000–₹9000"}
+};
+
+const p = places[id];
+const div = document.getElementById("details");
+
+if(p){
+div.innerHTML = `
+<div class="card p-4 shadow">
+
+<img src="${p.img}" class="img-fluid mb-3" style="height:300px;object-fit:cover;border-radius:10px;">
+
+<h2>${p.name}</h2>
+<p>📍 ${p.loc}</p>
+
+<p>${p.desc}</p>
+
+<p><b>How to Reach:</b> ${p.reach}</p>
+<p><b>Best Time:</b> ${p.best}</p>
+<p><b>Things to Do:</b> ${p.things}</p>
+<p><b>Stay:</b> ${p.stay}</p>
+
+<a href="places.html" class="btn btn-dark mt-3">Back</a>
+</div>
+`;
+}else{
+div.innerHTML = "<h3>Place not found</h3>";
+}
+</script>
+
+</body>
+</html>
