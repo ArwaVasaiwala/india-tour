@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <h2>Your Favorite Places ❤️</h2>
+  <div id="favContainer" class="row"></div>
+</div>
+
+<script>
+const placesData = {
+  goa:{name:"Goa", img:"images/goa.jpg"},
+  jaipur:{name:"Jaipur", img:"images/jaipur.jpg"},
+  taj:{ name:"Taj Mahal", img:"images/taj.jjpg.jpeg"},
+  const placesData = {
+  taj: { name: "Taj Mahal", img: "images/taj.jjpg.jpeg" },
+  manali: { name: "Manali", img: "images/manali.jpg.jpeg" },
+  shimla: { name: "Shimla", img: "images/shimla.jpg.jpeg" },
+  ooty: { name: "Ooty", img: "images/ooty.jpg.jpeg" },
+  kedarnath: { name: "Kedarnath", img: "images/kedarnath.jpg.jpeg" },
+  varanasi: { name: "Varanasi", img: "images/varanasi.jpeg" },
+  udaipur: { name: "Udaipur", img: "images/udaipur.jpeg" },
+  andaman: { name: "Andaman", img: "images/andaman.jpeg" },
+  rishikesh: { name: "Rishikesh", img: "images/rishikesh.jpeg" },
+  ladakh: { name: "Leh Ladakh", img: "images/ladakh.jpeg" },
+  mysore: { name: "Mysore", img: "images/mysore.jpeg" },
+  darjeeling: { name: "Darjeeling", img: "images/darjeeling.jpeg" },
+  amritsar: { name: "Amritsar", img: "images/amritsar.jpeg" },
+  hampi: { name: "Hampi", img: "images/hampi.jpeg" },
+  goa: { name: "Goa", img: "images/goa copy.jpg" },
+  jaipur: { name: "Jaipur", img: "images/jaipur.jpg" }
+};
+  // add all places here
+};
+
+async function loadFavorites(){
+  const userId = localStorage.getItem("userId");
+
+  const res = await fetch(`http://localhost:5000/api/favorites/${userId}`);
+  const data = await res.json();
+
+  const container = document.getElementById("favContainer");
+
+  data.forEach(id => {
+    const p = placesData[id];
+
+    container.innerHTML += `
+      <div class="col-md-4">
+        <div class="card shadow">
+          <img src="${p.img}" style="height:200px;object-fit:cover;">
+          <div class="card-body">
+            <h5>${p.name}</h5>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+loadFavorites();
+<script>
+function updateNavbar(){
+  const isLoggedIn = localStorage.getItem("loggedIn");
+  const navButtons = document.getElementById("authButtons");
+
+  if(isLoggedIn){
+    const username = localStorage.getItem("username");
+
+    navButtons.innerHTML = `
+      <span class="text-white me-2">Hi, ${username}</span>
+      <button onclick="logout()" class="btn btn-danger btn-sm">Logout</button>
+    `;
+  }
+}
+
+function logout(){
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("username");
+  window.location.href = "index.html";
+}
+
+updateNavbar();
+
+</script>

@@ -53,26 +53,51 @@ const p = places[id];
 const div = document.getElementById("details");
 
 if(p){
-div.innerHTML = `
-<div class="card p-4 shadow">
+  div.innerHTML = `
+  <div class="card p-4 shadow">
 
-<img src="${p.img}" class="img-fluid mb-3" style="height:300px;object-fit:cover;border-radius:10px;">
+  <img src="${p.img}" class="img-fluid mb-3">
 
-<h2>${p.name}</h2>
-<p>📍 ${p.loc}</p>
+  <h2>${p.name}</h2>
+  <p>📍 ${p.loc}</p>
 
-<p>${p.desc}</p>
+  <p>${p.desc}</p>
 
-<p><b>How to Reach:</b> ${p.reach}</p>
-<p><b>Best Time:</b> ${p.best}</p>
-<p><b>Things to Do:</b> ${p.things}</p>
-<p><b>Stay:</b> ${p.stay}</p>
+  <p><b>How to Reach:</b> ${p.reach}</p>
+  <p><b>Best Time:</b> ${p.best}</p>
+  <p><b>Things to Do:</b> ${p.things}</p>
+  <p><b>Stay:</b> ${p.stay}</p>
 
-<a href="places.html" class="btn btn-dark mt-3">Back</a>
-</div>
-`;
-}else{
-div.innerHTML = "<h3>Place not found</h3>";
+  <button onclick="saveFavorite()" class="btn btn-warning mt-3 me-2">
+    ❤️ Save to Favorites
+  </button>
+
+  <a href="places.html" class="btn btn-dark mt-3">Back</a>
+
+  </div>
+  `;
+} 
+else {
+  div.innerHTML = "<h3>Place not found</h3>";
+}
+
+function saveFavorite(){
+  if(!localStorage.getItem("loggedIn")){
+    alert("Login first!");
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const placeId = params.get("place");
+
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  if(!favorites.includes(placeId)){
+    favorites.push(placeId);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }
+
+  alert("Added to favorites ❤️");
 }
 </script>
 
